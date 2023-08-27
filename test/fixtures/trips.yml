@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 1
+  assignee_id: 1
+  status: MyString
+  estimated_arrival_time: 2023-08-24 20:28:34
+  estimated_completion_time: 2023-08-24 20:28:34
+  check_in_time: 2023-08-24 20:28:34
+  check_out_time: 2023-08-24 20:28:34
+
+two:
+  owner_id: 1
+  assignee_id: 1
+  status: MyString
+  estimated_arrival_time: 2023-08-24 20:28:34
+  estimated_completion_time: 2023-08-24 20:28:34
+  check_in_time: 2023-08-24 20:28:34
+  check_out_time: 2023-08-24 20:28:34

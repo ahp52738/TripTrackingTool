@@ -1,0 +1,46 @@
+<h1>Edit Trip</h1>
+
+<%#= render 'form', trip: @trip %>
+
+<%= form_with(model: @trip, local: true) do |form| %>
+    <%= render 'error_messages' %>
+	<div class="field">
+	    <%= form.label :owner_id %>
+	    <%= form.hidden_field :owner_id, value: current_user.id %>
+	    <%= form.text_field :owner_id, value: current_user.name, disabled: true %>
+	</div>
+ 
+    <div class="field">
+      <%= form.label :assignee_id %>
+      <%= form.text_field :assignee_id, value: @trip.assignee.name, disabled: true %>
+    </div>
+
+
+    <div class="field">
+    	<%= form.label :status %>
+    	<%= form.text_field :status, value: @trip.status, disabled: true %>
+  </div>
+
+
+  <% if @trip.status_Unstarted? %>
+	    <div class="field">
+		    <%= form.label :estimated_arrival_time %>
+		    <%= form.datetime_field :estimated_arrival_time %>
+	    </div>
+  <% end %>
+
+  <% if @trip.status_Unstarted? || @trip.status_Inprogress? %>
+	  <div class="field">
+	    <%= form.label :estimated_completion_time %>
+	    <%= form.datetime_field :estimated_completion_time %>
+	  </div>
+
+  <% end %>
+
+  <%= form.submit 'Save' %>
+<% end %>
+
+
+
+
+<%= link_to 'Back', root_path %>

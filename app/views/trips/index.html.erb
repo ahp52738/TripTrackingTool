@@ -1,0 +1,28 @@
+<h1>All Trips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Owner</th>
+      <th>Assignee</th>
+      <th>Status</th>
+      <th>Estimated Arrival Time</th>
+      <th>Estimated Completion Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+        <td><%= trip.id %></td>
+        <td><%= trip.owner.name %></td>
+        <td><%= trip.assignee.name if trip.assignee %></td>
+        <td><%= trip.status %></td>
+        <td><%= trip.estimated_arrival_time %></td>
+        <td><%= trip.estimated_completion_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Trip', new_trip_path %>

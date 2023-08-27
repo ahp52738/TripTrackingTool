@@ -1,0 +1,11 @@
+<!-- app/views/trips/_error_messages.html.erb -->
+<% if @trip.errors.any? %>
+  <div class="error-messages">
+    <h3 class="error-heading"><%= pluralize(@trip.errors.count, "error") %> errors prevented the Trip from being saved:</h3>
+    <ul class="error-list">
+      <% @trip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

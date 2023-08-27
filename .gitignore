@@ -1,0 +1,41 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore log files
+/log/*.log
+
+# Ignore temp files
+/tmp
+
+# Ignore database configuration
+# Ignore development and test databases
+db/development.sqlite3
+db/test.sqlite3
+
+# Ignore credentials and master key (if you're using Rails 5.2+ encrypted credentials)
+/config/credentials.yml.enc
+/config/master.key
+
+# Ignore IDE-specific files (these might vary depending on your IDE/editor)
+.idea/
+.vscode/
+
+# Ignore cache and compiled assets
+/public/assets
+/public/packs
+/public/packs-test
+/node_modules
+
+# Ignore the entire vendor/bundle directory
+vendor/bundle/
+
+# Ignore Gemfile.lock (tracking it can lead to dependency issues)
+Gemfile.lock
+db/schema.rb
+
+# Ignore environment-specific .env files
+.env
+.env.*
+
+# Ignore byebug history files
+*byebug_history*

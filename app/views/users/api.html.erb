@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Management Tool Documentation</title>
+    <style>
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex: 1;
+            margin: 0 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        pre {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trip Management Tool</h1>
+
+        <div class="section">
+            <h2 class="section-heading">API Section 1</h2>
+            <div class="row">
+                <div class="column">
+<h3>1) Fetch User List For Create a new Trip</h3>
+<p>GET /api/v1/users_list/:user_id</p>
+<p>URL: http://localhost:3000/api/v1/users_list/1</a></p>
+<p>QueryString Parameter: user_id</p>
+<h4>Response:</h4>
+<pre>
+    {
+        "assigne_users": [
+            {
+                "id": 2,
+                "name": "User2",
+                "created_at": "2023-08-27T04:16:01.856Z",
+                "updated_at": "2023-08-27T04:16:01.856Z",
+                "email": "user2@example.com"
+            },
+            {
+                "id": 3,
+                "name": "User3",
+                "created_at": "2023-08-27T04:16:02.292Z",
+                "updated_at": "2023-08-27T04:16:02.292Z",
+                "email": "user3@example.com"
+            },
+            {
+                "id": 4,
+                "name": "User4",
+                "created_at": "2023-08-27T04:16:02.728Z",
+                "updated_at": "2023-08-27T04:16:02.728Z",
+                "email": "user4@example.com"
+            },
+            {
+                "id": 5,
+                "name": "User5",
+                "created_at": "2023-08-27T04:16:03.162Z",
+                "updated_at": "2023-08-27T04:16:03.162Z",
+                "email": "user5@example.com"
+            }
+        ]
+    }
+</pre>
+       
+                    <!-- Add details here -->
+                </div>
+                <div class="column">
+                    
+                    <h2>Create the Trip</h2>
+                        <p><strong>POST</strong> /api/v1/create_trip</p>
+                        <p><strong>url:</strong> http://localhost:3000/api/v1/create_trip</p>
+                        <p><strong>Request_Type:</strong> POST</p>
+                        <h3>Request Parameters:</h3>
+                        <pre>
+                            {
+                               "trip": {
+                                   "owner_id": "1",
+                                   "assignee_id": "2",
+                                   "status": "Unstarted",
+                                   "estimated_arrival_time": "2024-09-01T18:42",
+                                   "estimated_completion_time": "2024-10-30T18:42"
+                               }
+                            }</pre>
+                            <h3>Response:</h3><pre>{"message": "Trip was successfully Created." }</pre>  <pre><h3>Request Parameters:</h3></pre>
+                        <pre>
+                        {"trip": {}}
+                        </pre>
+                        <pre><h3>Response:</h3></pre> <pre>{"error": "param is missing or the value is empty: trip"}</pre>
+                    <pre><h3>Request Parameters:</h3></pre>
+                    <pre>
+                    {
+                       "trip": {
+                           "assignee_id": "2",
+                           "status": "Unstarted",
+                           "estimated_arrival_time": "2024-09-01T18:42",
+                           "estimated_completion_time": "2024-10-30T18:42"
+                       }
+                    }</pre>
+                    <pre><h3>Response:</h3></pre> <pre>{"error": ""Owner must exist""}</pre>
+
+                    <pre><h3>Request Parameters:</h3></pre>
+                    <pre>{ "trip": {"owner_id": "1"}}</pre>
+                    <pre><h3>Response:</h3></pre> 
+                    <pre>
+                    {
+                        "errors": [
+                            "Assignee must exist",
+                            "Estimated arrival time can't be blank",
+                            "Estimated completion time can't be blank"
+                        ]
+                    }</pre>
+                </div>
+
+
+                <div class="column">
+<h3>3) Update The Trip</h3>
+<p><strong>PATCH</strong> /api/v1/update_trip/:trip_id/:user_id</p>
+<p><strong>url:</strong> http://localhost:3000/api/v1/update_trip/11/1</a></p>
+<p><strong>QueryString parameters:</strong> user_id, trip_id</p>
+<h3>Request Parameters:</h3>
+<pre>
+{
+   "trip": {
+       "owner_id": "3",
+       "assignee_id": "2",
+       "status": "Unstarted",
+       "estimated_arrival_time": "2024-09-01T18:42",
+       "estimated_completion_time": "2024-10-30T18:42"
+   }
+}
+</pre><h3>Response:</h3></pre>
+<pre>{"message": "Only the current owner can update the trip."}</pre>
+
+
+
+<h3>Request Parameters:</h3>
+<pre>  
+  {
+      "trip": {
+          "assignee_id": "3",
+          "estimated_arrival_time": "2024-09-01T18:42",
+          "estimated_completion_time": "2024-10-30T18:42"
+      }
+   }
+</pre>
+
+</pre><h3>Response:</h3></pre> <pre>{"message": "Trip was successfully updated."}</pre>
+
+<pre><h3>Request Parameters:</h3> </pre>
+  <pre>{
+      "trip": {
+          "assignee_id": "3",
+          "estimated_arrival_time": "2024-09-01T18:42",
+          "estimated_completion_time": "2024-10-30T18:42"
+      }
+   }
+</pre>
+
+</pre><h3>Response:</h3></pre> <pre> {"message": "assignee_id & estimated_arrival_time cannot be changed inprogress."}</pre>
+
+
+<h3>Request Parameters:</h3>
+ <pre> {"trip": {"estimated_completion_time": "2024-10-30T18:42"}}
+</pre>
+</pre><h3>Response:</h3></pre> 
+<pre>{"message": "Trip was successfully updated."}</pre>
+
+                    <!-- Add details here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-heading">API Section 2</h2>
+            <div class="row">
+                <div class="column">
+            <h3>4) Fetch the user list to reassign the trip to another user.</h3>
+            <p>GET /api/v1/users_list_for_reassign/:trip_id</p>
+            <p>URL: http://localhost:3000/api/v1/users_list_for_reassign/15</a></p>
+            <p>QueryString Parameter: trip_id</p>
+            <h4>Response:</h4>
+                <pre>
+{
+    "assigne_users": [
+        {
+            "id": 3,
+            "name": "User3",
+            "created_at": "2023-08-27T04:16:02.292Z",
+            "updated_at": "2023-08-27T04:16:02.292Z",
+            "email": "user3@example.com"
+        },
+        {
+            "id": 4,
+            "name": "User4",
+            "created_at": "2023-08-27T04:16:02.728Z",
+            "updated_at": "2023-08-27T04:16:02.728Z",
+            "email": "user4@example.com"
+        },
+        {
+            "id": 5,
+            "name": "User5",
+            "created_at": "2023-08-27T04:16:03.162Z",
+            "updated_at": "2023-08-27T04:16:03.162Z",
+            "email": "user5@example.com"
+        }
+    ]
+}
+    </pre>
+
+                    <!-- Add details here -->
+                </div>
+                <div class="column">
+                    
+
+
+          <h3>5) Fetch the user list to reassign the trip to another user.</h3>
+            <p>GET /api/v1/reassign_trip/:trip_id/:user_id</p>
+            <p>URL: <a href="http://localhost:3000/api/v1/reassign_trip/11/1">http://localhost:3000/api/v1/reassign_trip/11/1</a></p>
+            <p>QueryString Parameter: trip_id,user_id</p>
+            <h4>Response:</h4>
+<pre>
+<h3>Request Parameters:</h3>    
+{
+   "trip": {
+       "owner_id":3 ,
+       "assignee_id": 2
+   }
+</pre>
+}
+<pre><h4>Response:</h4></pre><pre> {
+    "message": "Current Assignee can Reassign the Trip Only."
+}</pre>
+
+<h3>Request Parameters:</h3>
+<pre>{
+   "trip": {
+       "owner_id":3 ,
+       "assignee_id": 2
+   }
+}</pre>
+<pre><h4>Response:</h4></pre><pre>{
+    "message": "Trip Reassign only in Ustarted stage."
+}</pre>
+                    <!-- Add details here -->
+                </div>
+                <div class="column">
+                    <h3>6) Check In Trip</h3>
+<p>PATCH /api/v1/check_in_trip/:trip_id/:user_id</p>
+url: http://localhost:3000/api/v1/check_in_trip/11/3
+
+<p>URL: http://localhost:3000/api/v1/check_in_trip/11/31</a></p>
+<p>QueryString paramaeter: trip_id,user_id</p>
+
+<pre><h4>Response:</h4></pre><pre>{
+    "message": "Trip checked in successfully."."
+}</pre>
+
+<pre><h4>Response:</h4></pre><pre>{
+    "message": "Current Assignee can Check in the  Trip Only."."
+}</pre>
+
+<pre><h4>Response:</h4></pre><pre>{
+    "message": "Trip checked in successfully."."
+}</pre>
+
+
+                </div>
+            </div>
+        </div>
+         <div class="section">
+            <h2 class="section-heading">API Section 3</h2>
+            <div class="row">
+                <div class="column">
+                     <h3>6) Check out Trip</h3>
+                    <p>PATCH /api/v1/check_out_trip/:trip_id/:user_id</p>
+
+
+<p>URL: http://localhost:3000/api/v1/check_out_trip/11/1</a></p>
+<p>QueryString paramaeter: trip_id,user_id</p>
+
+<pre><h4>Response:</h4></pre><pre>{
+    "message": "Trip checked out successfully."."
+}</pre>
+                </div>
+                <div class="column">
+                    <h3>8)Fetch All Trip For Requested user</h3>
+                   
+
+<p>GET   /api/v1/users_trips/:user_id</p>
+<p>URL: http://localhost:3000/api/v1/users_trips/1</a></p>
+url: http://localhost:3000/api/v1/users_trips/1
+<p>QueryString paramaeter: user_id</p>
+<pre><h4>Response:</h4></pre><pre>
+
+{
+    "owned_trips": [
+        {
+            "id": 7,
+            "owner_id": 1,
+            "assignee_id": 2,
+            "status": "Unstarted",
+            "estimated_arrival_time": "2023-10-01T18:42:00.000Z",
+            "estimated_completion_time": "2023-12-30T18:42:00.000Z",
+            "check_in_time": null,
+            "check_out_time": null,
+            "created_at": "2023-08-28T10:50:15.112Z",
+            "updated_at": "2023-08-28T11:02:58.281Z"
+        },
+        {
+            "id": 8,
+            "owner_id": 1,
+            "assignee_id": 2,
+            "status": "Unstarted",
+            "estimated_arrival_time": "2023-10-01T18:42:00.000Z",
+            "estimated_completion_time": "2023-12-30T18:42:00.000Z",
+            "check_in_time": null,
+            "check_out_time": null,
+            "created_at": "2023-08-28T11:25:09.988Z",
+            "updated_at": "2023-08-28T11:32:46.989Z"
+        },
+        {
+            "id": 9,
+            "owner_id": 1,
+            "assignee_id": 2,
+            "status": "Unstarted",
+            "estimated_arrival_time": "2023-10-01T18:42:00.000Z",
+            "estimated_completion_time": "2023-11-30T18:42:00.000Z",
+            "check_in_time": null,
+            "check_out_time": null,
+            "created_at": "2023-08-28T11:29:00.476Z",
+            "updated_at": "2023-08-28T11:33:31.583Z"
+        }
+    ],
+    "assigned_trips": [
+        {
+            "id": 10,
+            "owner_id": 3,
+            "assignee_id": 1,
+            "status": "Unstarted",
+            "estimated_arrival_time": "2023-09-01T18:42:00.000Z",
+            "estimated_completion_time": "2023-10-30T18:42:00.000Z",
+            "check_in_time": null,
+            "check_out_time": null,
+            "created_at": "2023-08-28T11:30:05.512Z",
+            "updated_at": "2023-08-28T11:30:05.512Z"
+        }
+    ]
+}
+</pre>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Continue adding more sections as needed -->
+
+    </div>
+</body>
+</html>
+
+
+
+
+

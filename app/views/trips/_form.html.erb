@@ -1,0 +1,35 @@
+<%= form_with(model: trip, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :owner_id %>
+    <%= form.hidden_field :owner_id, value: current_user.id %>
+    <%= form.text_field :owner_id, value: current_user.name, disabled: true %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :assignee_id %>
+    <%= form.collection_select :assignee_id, @assigne_user, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.hidden_field :status, value: "Unstarted" %>
+    <%= form.text_field :status, value: "Unstarted", disabled: true %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :estimated_arrival_time %>
+    <%= form.datetime_field :estimated_arrival_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_completion_time %>
+    <%= form.datetime_field :estimated_completion_time %>
+  </div>
+
+  <%= form.submit 'Save' %>
+<% end %>
+
+

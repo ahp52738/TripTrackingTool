@@ -30,8 +30,7 @@ db/test.sqlite3
 vendor/bundle/
 
 # Ignore Gemfile.lock (tracking it can lead to dependency issues)
-Gemfile.lock
-db/schema.rb
+
 
 # Ignore environment-specific .env files
 .env

@@ -30,7 +30,7 @@ Install dependencies: bundle install
 Set up the database: rails db:setup
 Seed initial data: rails db:seed
 
-
+Users credentials are in seeds.rb file.
 
 
   .....................APIS....................................................
